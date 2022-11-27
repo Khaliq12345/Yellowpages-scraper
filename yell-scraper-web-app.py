@@ -1,3 +1,5 @@
+import os
+os.system("playwright install chromium")
 import streamlit as st
 from playwright.sync_api import sync_playwright
 import pandas as pd
