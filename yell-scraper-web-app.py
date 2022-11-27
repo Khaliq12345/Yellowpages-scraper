@@ -175,33 +175,33 @@ def scrape1():
     mime='text/csv',
     )
         
+if __name__ == '__main__':
+    st.title('YELL.COM SCRAPER')
+    st.markdown('NB: Scraping with url gives a much more accurate data')
+    tab1, tab2 = st.tabs(['Scraping with url', 'Scraping with parameters'])
 
-st.title('YELL.COM SCRAPER')
-st.markdown('NB: Scraping with url gives a much more accurate data')
-tab1, tab2 = st.tabs(['Scraping with url', 'Scraping with parameters'])
+    with tab1.form('Scraper with listing url'):
+        yell_url = st.text_input('Input a listing url')
+        start1 = st.form_submit_button('Scrape!')
+    if start1:
+        scrape1()
+        st.balloons()
+        st.success('Done!')
 
-with tab1.form('Scraper with listing url'):
-    yell_url = st.text_input('Input a listing url')
-    start1 = st.form_submit_button('Scrape!')
-if start1:
-    scrape1()
-    st.balloons()
-    st.success('Done!')
-
-with tab2.form('Scraper with parameters'):
-    keyword = st.text_input('Keyword')
-    city = st.text_input('City')
-    state = st.text_input('State')
-    start2 = st.form_submit_button('Scrape!')
-if start2:
-    scrape2()
-    st.balloons()
-    st.success('Done!')
+    with tab2.form('Scraper with parameters'):
+        keyword = st.text_input('Keyword')
+        city = st.text_input('City')
+        state = st.text_input('State')
+        start2 = st.form_submit_button('Scrape!')
+    if start2:
+        scrape2()
+        st.balloons()
+        st.success('Done!')
 
 
-# if start:
-#     scrape()
-#     st.balloons()
-#     st.success('Done!')
+    # if start:
+    #     scrape()
+    #     st.balloons()
+    #     st.success('Done!')
 
 
