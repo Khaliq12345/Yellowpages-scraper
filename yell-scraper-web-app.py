@@ -25,6 +25,7 @@ def scrape2():
             page.wait_for_selector('.businessCapsule--mainRow')
             html = page.inner_html('#rightNav')
             soup = BeautifulSoup(html, 'html.parser')
+            st.text(soup.text)
             cards = soup.select('.businessCapsule--mainRow')
             for card in cards:
                 try:
