@@ -22,56 +22,51 @@ def scrape2():
             x = x + 1
             page.goto(url)
             progress.metric('Pages scraped', x)
-            try:
-                page.wait_for_selector('.businessCapsule--mainRow')
-                html = page.inner_html('#rightNav')
-                soup = BeautifulSoup(html, 'html.parser')
-                cards = soup.select('.businessCapsule--mainRow')
-                for card in cards:
-                    try:
-                        name = card.select_one('.text-h2').text
-                    except:
-                        name = None
-                    try:
-                        website = card.select_one('a.businessCapsule--ctaItem')['href']
-                    except:
-                        website = None
-                    try:
-                        phone = card.select_one('.business--telephoneNumber').text
-                    except:
-                        phone = None
-                    try:
-                        address = card.select_one('.businessCapsule--link').text.split('|')
-                        address = address[1]
-                    except:
-                        address = None
-                    try:
-                        about = card.select_one('.businessCapsule--classStrap').text
-                    except:
-                        about = None
-                    try:
-                        rate = card.select_one('.starRating--average').text
-                    except:
-                        rate = None
-                    try:
-                        reviews = card.select_one('.starRating--total span').text  
-                    except:
-                        reviews = None
-                    
-                    items = {
-                        'Name': name,
-                        'Website': website,
-                        'Phone': phone,
-                        'Address': address,
-                        'About': about,
-                        'Rating': rate,
-                        'Total reviews': reviews
-                    }
-                    items_list.append(items)
-            except:
-                pass
-                print('Parameter error! Try scraping by link')
+            page.wait_for_selector('.businessCapsule--mainRow')
+            html = page.inner_html('#rightNav')
+            soup = BeautifulSoup(html, 'html.parser')
+            cards = soup.select('.businessCapsule--mainRow')
+            for card in cards:
+                try:
+                    name = card.select_one('.text-h2').text
+                except:
+                    name = None
+                try:
+                    website = card.select_one('a.businessCapsule--ctaItem')['href']
+                except:
+                    website = None
+                try:
+                    phone = card.select_one('.business--telephoneNumber').text
+                except:
+                    phone = None
+                try:
+                    address = card.select_one('.businessCapsule--link').text.split('|')
+                    address = address[1]
+                except:
+                    address = None
+                try:
+                    about = card.select_one('.businessCapsule--classStrap').text
+                except:
+                    about = None
+                try:
+                    rate = card.select_one('.starRating--average').text
+                except:
+                    rate = None
+                try:
+                    reviews = card.select_one('.starRating--total span').text  
+                except:
+                    reviews = None
 
+                items = {
+                    'Name': name,
+                    'Website': website,
+                    'Phone': phone,
+                    'Address': address,
+                    'About': about,
+                    'Rating': rate,
+                    'Total reviews': reviews
+                }
+                items_list.append(items)
             try:
                 page.locator('.pagination--next').click()
                 url = 'https://www.yell.com' + soup.select_one('.pagination--next')['href']
