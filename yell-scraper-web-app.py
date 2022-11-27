@@ -22,6 +22,7 @@ def scrape2():
             x = x + 1
             page.goto(url)
             progress.metric('Pages scraped', x)
+            st.text(page.content())
             page.wait_for_selector('.businessCapsule--mainRow')
             html = page.inner_html('#rightNav')
             soup = BeautifulSoup(html, 'html.parser')
