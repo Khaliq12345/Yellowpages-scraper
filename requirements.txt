@@ -4,4 +4,4 @@ streamlit==1.15.0
 requests==2.23.0
 lxml==4.9.1
 playwright
-latest-user-agents 0.0.3
+latest-user-agents==0.0.3
