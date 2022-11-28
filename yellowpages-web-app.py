@@ -141,6 +141,7 @@ def scraper2():
 
 if __name__ == '__main__':
     st.title('YELLOWPAGES.COM SCRAPER')
+    st.caption('Field to be scraped are: Name, website, Phone, Address, Reviews count')
     tab1, tab2 = st.tabs(['Scraping with url', 'Scraping with parameters'])
 
     with tab1.form('Scraper with listing url'):
