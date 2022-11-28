@@ -20,42 +20,43 @@ def scraper1():
         progress.metric('Pages scraped', x)
         soup = BeautifulSoup(response.text, 'html.parser')
         cards = soup.select('.result')
-
-        for card in cards:
-            try:
-                name = card.select_one('.business-name').text
-            except:
-                name = None
-            try:
-                link = card.select_one('.links a')['href']
-            except:
-                link = None
-            try:
-                phone = card.select_one('.phone').text
-            except:
-                phone = None
-            try:
-                address1 = card.select_one('.street-address').text
-            except:
-                address1 = None
-            try:
-                address2 = card.select_one('.locality').text
-            except:
-                address2 = None
-            try:
-                reviews = card.select_one('.count').text.replace(')', '').replace('(', '')
-            except:
-                reviews = None
-            items = {
-                'Name': name,
-                'Website/social': link,
-                'Phone': phone,
-                'Address 1': address1,
-                'Address 2': address2,
-                'Reviews': reviews
-            }
-            item_list.append(items)
-
+        try:
+            for card in cards:
+                try:
+                    name = card.select_one('.business-name').text
+                except:
+                    name = None
+                try:
+                    link = card.select_one('.links a')['href']
+                except:
+                    link = None
+                try:
+                    phone = card.select_one('.phone').text
+                except:
+                    phone = None
+                try:
+                    address1 = card.select_one('.street-address').text
+                except:
+                    address1 = None
+                try:
+                    address2 = card.select_one('.locality').text
+                except:
+                    address2 = None
+                try:
+                    reviews = card.select_one('.count').text.replace(')', '').replace('(', '')
+                except:
+                    reviews = None
+                items = {
+                    'Name': name,
+                    'Website/social': link,
+                    'Phone': phone,
+                    'Address 1': address1,
+                    'Address 2': address2,
+                    'Reviews': reviews
+                }
+                item_list.append(items)
+        except:
+            pass
         try:
             n_page = soup.select_one('.next.ajax-page')['href']
             url = 'https://www.yellowpages.com' + n_page
@@ -87,42 +88,43 @@ def scraper2():
         progress.metric('Pages scraped', y)
         soup = BeautifulSoup(response.text, 'html.parser')
         cards = soup.select('.result')
-
-        for card in cards:
-            try:
-                name = card.select_one('.business-name').text
-            except:
-                name = None
-            try:
-                link = card.select_one('.links a')['href']
-            except:
-                link = None
-            try:
-                phone = card.select_one('.phone').text
-            except:
-                phone = None
-            try:
-                address1 = card.select_one('.street-address').text
-            except:
-                address1 = None
-            try:
-                address2 = card.select_one('.locality').text
-            except:
-                address2 = None
-            try:
-                reviews = card.select_one('.count').text.replace(')', '').replace('(', '')
-            except:
-                reviews = None
-            items = {
-                'Name': name,
-                'Website/social': link,
-                'Phone': phone,
-                'Address 1': address1,
-                'Address 2': address2,
-                'Reviews': reviews
-            }
-            item_list.append(items)
-
+        try:
+            for card in cards:
+                try:
+                    name = card.select_one('.business-name').text
+                except:
+                    name = None
+                try:
+                    link = card.select_one('.links a')['href']
+                except:
+                    link = None
+                try:
+                    phone = card.select_one('.phone').text
+                except:
+                    phone = None
+                try:
+                    address1 = card.select_one('.street-address').text
+                except:
+                    address1 = None
+                try:
+                    address2 = card.select_one('.locality').text
+                except:
+                    address2 = None
+                try:
+                    reviews = card.select_one('.count').text.replace(')', '').replace('(', '')
+                except:
+                    reviews = None
+                items = {
+                    'Name': name,
+                    'Website/social': link,
+                    'Phone': phone,
+                    'Address 1': address1,
+                    'Address 2': address2,
+                    'Reviews': reviews
+                }
+                item_list.append(items)
+        except:
+            pass
     df = pd.DataFrame(item_list)
     col2.metric('Total data scrape', len(df))
     st.dataframe(df)
