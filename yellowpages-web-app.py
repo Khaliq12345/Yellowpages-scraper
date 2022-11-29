@@ -158,20 +158,20 @@ if __name__ == '__main__':
     with tab1.form('Scraper with listing url'):
         listing_url = st.text_input('Paste a listing url')
         start1 = st.form_submit_button('Scrape!')
-    if start1:
-        scraper1()
-        st.balloons()
-        st.success('Done!')
+        if start1:
+            scraper1()
+            st.balloons()
+            st.success('Done!')
 
     with tab2.form('Scraper with parameters'):
         category = st.text_input('Keyword EX: Restaurants')
         location = st.text_input('Location EX: Miami, Florida')
         pages = st.number_input('Number of pages to scrape')
         start2 = st.form_submit_button('Scrape!')
-    if start2:
-        scraper2()
-        st.balloons()
-        st.success('Done!')
+        if start2:
+            scraper2()
+            st.balloons()
+            st.success('Done!')
 
 
 
