@@ -6,7 +6,7 @@ from time import sleep
 from latest_user_agents import get_random_user_agent
 ua = get_random_user_agent()
 
-st.set_page_config(page_title= 'Yellowpages.com Scraper', page_icon=":man:")
+st.set_page_config(page_title= 'Yellowpages Scraper', page_icon=":man:")
 hide_menu = """
 <style>
 #MainMenu {
@@ -15,6 +15,7 @@ footer {
     visibility:hidden;}
 </style>
 """
+st.markdown(hide_menu, unsafe_allow_html=True)
 
 def scraper1():
     item_list = []
@@ -152,7 +153,6 @@ def scraper2():
 if __name__ == '__main__':
     st.title('YELLOWPAGES.COM SCRAPER')
     st.caption('Field to be scraped are: Name, website, Phone, Address, Reviews count')
-    st.markdown(hide_menu, unsafe_allow_html=True)
     tab1, tab2 = st.tabs(['Scraping with url', 'Scraping with parameters'])
 
     with tab1.form('Scraper with listing url'):
