@@ -6,6 +6,16 @@ from time import sleep
 from latest_user_agents import get_random_user_agent
 ua = get_random_user_agent()
 
+st.set_page_config(page_title= 'Yellowpages.com Scraper', page_icon=":man:")
+hide_menu = """
+<style>
+#MainMenu {
+    visibility:hidden;}
+footer {
+    visibility:hidden;}
+</style>
+"""
+
 def scraper1():
     item_list = []
     url = listing_url
